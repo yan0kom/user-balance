@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @CacheEvict(cacheNames = "userCache", key = "#{authUserId()}")
+    @CacheEvict(cacheNames = "userCache", key = "target.authUserId()")
     public void deleteEmail(Long id) {
         userRepo.deleteEmail(id, authUserId());
     }
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @CacheEvict(cacheNames = "userCache", key = "#{authUserId()}")
+    @CacheEvict(cacheNames = "userCache", key = "target.authUserId()")
     public void deletePhone(Long id) {
         userRepo.deletePhone(id, authUserId());
     }
@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
         return accountService.transfer(payer.getAccount(), payee.getAccount(), value);
     }
 
-    private Long authUserId() {
+    public Long authUserId() {
         return Long.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 }

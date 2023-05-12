@@ -3,6 +3,7 @@ package yan0kom.userbal.api.impl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -38,6 +39,11 @@ class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(BadCredentialsException.class)
 	public ResponseEntity<ErrorOutDto> handleBadCredentialsException(BadCredentialsException ex) {
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorOutDto(ex.getMessage()));
+	}
+
+	@ExceptionHandler(AccessDeniedException.class)
+	public ResponseEntity<ErrorOutDto> handleAccessDeniedException(AccessDeniedException ex) {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorOutDto(ex.getMessage()));
 	}
 

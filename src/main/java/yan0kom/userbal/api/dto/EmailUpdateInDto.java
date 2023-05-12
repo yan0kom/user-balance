@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 public class EmailUpdateInDto {
     @NotNull
     private Long id;
+    @NotNull
     @Email
     private String email;
 }

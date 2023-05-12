@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 public class TransferInDto {
     @NotNull
     private Long payeeId;
+    @NotNull
     @Positive
     private BigDecimal value;
 }

@@ -5,11 +5,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Getter
 @Setter
 public class EmailCreateInDto {
+    @NotNull
     @Email
     private String email;
 }

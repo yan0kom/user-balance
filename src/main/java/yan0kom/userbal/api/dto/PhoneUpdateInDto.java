@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 public class PhoneUpdateInDto {
     @NotNull
     private Long id;
+    @NotNull
     @Size(min = 11, max = 13)
     private String phone;
 }

@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost/userbal
+    username: userbal
+    password: userbal
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+  sql:
+    init:
+      mode: always
+
+springdoc:
+  packagesToScan: yan0kom.userbal.api
+  pathsToMatch: /user /token
+  swagger-ui:
+    path: /doc/swagger-ui.html
+  api-docs:
+    path: /api-docs
+
+server:
+  port: 8080
+  servlet:
+    contextPath: /api
+    encoding:
+      force-response: true
+  tomcat:
+    threads:
+      max: 3
+
+application:
+  balance-increment: 10 # увеличение на 10%
+  balance-max-value: 207 # 207% от начального депозита
+  balance-increment-cron: '*/30 * * * * *' # увеличение каждые 30 сек.
+  jwt:
+    private.key: classpath:app.key
+    public.key: classpath:app.pub
